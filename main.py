@@ -16,6 +16,13 @@ try:
         print("'city-information.txt' is empty, make sure to have the file located in the 'Daily-forecast' parent folder with the correct format found in the README.md.")
         sys.exit()
 
+except FileNotFoundError:
+    f = open('city-information.txt', 'w+')
+    f.write("Country:\nState:\nCity:\nEmail:\n")
+    f.close()
+    print("\nThe 'city-information.txt' file created, enter your location information and run 'main.py' again.\n")
+    sys.exit()
+    
 except (IOError, OSError):
     print("Could not open/read the 'city-information.txt' file, make sure that the file is located in the 'Daily-Forecast' parent folder.")
     sys.exit()
@@ -39,7 +46,8 @@ for row in cityDB:
         lng = row[3]
 
 if lat is None and lng is None:
-    print("Location not found.\nMake sure that your entered location can be found in 'worldcities.csv'.")
+    print("\nLocation not found.\nMake sure that you entered a location in 'city-information.txt' and the entered location can be found in 'worldcities.csv'.\n")
+    sys.exit()
 
 # The url to scrape
 url = f"https://api.weather.gov/points/{lat},{lng}"
@@ -65,6 +73,7 @@ forecastResponse = requests.get(parsedRequest["properties"]["forecast"])
 parsedForecast = forecastResponse.json()
 
 print(f"The weather {parsedForecast["properties"]["periods"][0]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
-
+print(f"The weather {parsedForecast["properties"]["periods"][1]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
+print(f"The weather {parsedForecast["properties"]["periods"][2]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
 # # Create soup object with the type of parser (html) and the content to be parsed
 # soup = BeautifulSoup(response.content, 'html.parser')
