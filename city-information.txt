@@ -1,4 +1,4 @@
-Country: United States
-State: Minnesota
-City: Minneapolis
-Email: bradgale6237@gmail.com
+Country: 
+State: 
+City: 
+Email: 
