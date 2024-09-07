@@ -6,10 +6,14 @@ To set up this program, make sure to have the 'city-information.txt' file format
 
     Country: {Your Country}
     State: {Your State}
-    City: {Minneapolis}
+    City: {Your City}
+    Email: {Your Email}
 
 Forecast API:
 https://www.weather.gov/documentation/services-web-api#/
 
 World Cities CSV:
 https://simplemaps.com/data/world-cities
+
+python emails:
+https://stackoverflow.com/questions/6270782/how-to-send-an-email-with-python
