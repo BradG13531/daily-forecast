@@ -73,7 +73,7 @@ forecastResponse = requests.get(parsedRequest["properties"]["forecast"])
 parsedForecast = forecastResponse.json()
 
 print(f"The weather {parsedForecast["properties"]["periods"][0]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
-print(f"The weather {parsedForecast["properties"]["periods"][1]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
-print(f"The weather {parsedForecast["properties"]["periods"][2]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
+print(f"The weather {parsedForecast["properties"]["periods"][1]["name"].lower()} will be: {parsedForecast["properties"]["periods"][1]["temperature"]}{degrees}")
+print(f"The weather {parsedForecast["properties"]["periods"][2]["name"].lower()} will be: {parsedForecast["properties"]["periods"][2]["temperature"]}{degrees}")
 # # Create soup object with the type of parser (html) and the content to be parsed
 # soup = BeautifulSoup(response.content, 'html.parser')
