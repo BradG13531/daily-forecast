@@ -18,9 +18,9 @@ try:
 
 except FileNotFoundError:
     f = open('city-information.txt', 'w+')
-    f.write("Country:\nState:\nCity:\nEmail:\n")
+    f.write("Country: United States\nState:\nCity:\nEmail:\n")
     f.close()
-    print("\nThe 'city-information.txt' file created, enter your location information and run 'main.py' again.\n")
+    print("\nThe 'city-information.txt' file created and placed in the 'daily-forecast' directory, enter your location information and run 'main.py' again.\n")
     sys.exit()
     
 except (IOError, OSError):
@@ -66,14 +66,18 @@ parsedClosestStation = closestStation.json()
 
 currentTemp = round(parsedClosestStation["features"][0]["properties"]["temperature"]["value"] * 9/5 + 32)
 
-print(f"The current temperature is: {currentTemp}{degrees}")
-
 # The forecast call will give us forecasts for several 12 hour periods in the future
 forecastResponse = requests.get(parsedRequest["properties"]["forecast"])
 parsedForecast = forecastResponse.json()
 
-print(f"The weather {parsedForecast["properties"]["periods"][0]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
-print(f"The weather {parsedForecast["properties"]["periods"][1]["name"].lower()} will be: {parsedForecast["properties"]["periods"][1]["temperature"]}{degrees}")
-print(f"The weather {parsedForecast["properties"]["periods"][2]["name"].lower()} will be: {parsedForecast["properties"]["periods"][2]["temperature"]}{degrees}")
-# # Create soup object with the type of parser (html) and the content to be parsed
-# soup = BeautifulSoup(response.content, 'html.parser')
+# print(f"The weather {parsedForecast["properties"]["periods"][0]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}")
+# print(f"The weather {parsedForecast["properties"]["periods"][1]["name"].lower()} will be: {parsedForecast["properties"]["periods"][1]["temperature"]}{degrees}")
+# print(f"The weather {parsedForecast["properties"]["periods"][2]["name"].lower()} will be: {parsedForecast["properties"]["periods"][2]["temperature"]}{degrees}")
+
+message = f'''
+The current temperature is: {currentTemp}{degrees}\n
+The weather {parsedForecast["properties"]["periods"][0]["name"].lower()} will be: {parsedForecast["properties"]["periods"][0]["temperature"]}{degrees}
+The weather {parsedForecast["properties"]["periods"][1]["name"].lower()} will be: {parsedForecast["properties"]["periods"][1]["temperature"]}{degrees}
+The weather {parsedForecast["properties"]["periods"][2]["name"].lower()} will be: {parsedForecast["properties"]["periods"][2]["temperature"]}{degrees}
+'''
+print(message)
